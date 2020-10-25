@@ -39,8 +39,6 @@ function OrderList() {
     const page = tableState ? tableState.page + 1 : state.items.page
     
     getOrders(page, (response) => {
-      console.log(response)
-
       setState(state => ({
         ...state, 
         affectSteedIsVisible: false,

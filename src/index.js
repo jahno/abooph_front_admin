@@ -11,6 +11,9 @@ import { ScrollContext } from 'react-router-scroll-4';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from 'react-toastify';
 
+// Ajout de antd
+import 'antd/dist/antd.css';
+
 // Global components
 import { Provider } from 'react-redux';
 import store from './redux/store';

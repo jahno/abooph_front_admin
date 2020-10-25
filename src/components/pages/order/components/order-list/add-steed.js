@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SweetAlert from 'react-bootstrap-sweetalert'
 import Datatable from 'components/common/datatable'
+import { Modal } from 'antd';
 
 import { affectOrderToSteed } from 'services/api'
 
@@ -143,16 +143,21 @@ function SteedList(props) {
     }
   ];
 
-  if(!isVisible) return null;
-
   return (
-    <SweetAlert onCancel={handleCancel} title="affectation de coursier!" showConfirm={false}>
-      <Datatable 
-        onFetchData={onFetchData} 
-        state={state} 
-        columns={columns}
-      />
-    </SweetAlert>
+    <>
+      <Modal
+        title="affectation de coursier!"
+        visible={isVisible}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <Datatable 
+          onFetchData={onFetchData} 
+          state={state} 
+          columns={columns}
+        />
+      </Modal>
+    </>
   )
 }
 
