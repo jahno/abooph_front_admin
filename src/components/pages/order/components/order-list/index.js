@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useRef } from 'react';
+
 import {toast } from 'react-toastify';
 import Breadcrumb from 'components/common/breadcrumb';
 import Datatable from 'components/common/datatable'
@@ -6,11 +7,8 @@ import {DeleteAlerte, handleDelete} from 'components/common/custum-alerte-delete
 
 import { useRouteMatch, useHistory } from "react-router-dom";
 
-import {handleService} from 'helpers';
-import {deleteSteed, changeState} from 'services/steed'
-
-import { getOrders } from 'services/api'
-import SteedList from './add-steed';
+import { deleteOrder, getOrders } from 'services/api'
+import SteedList from '../add-steed';
 
 
 function OrderList() {
@@ -67,38 +65,7 @@ function OrderList() {
     if(role === 'delete'){
       handleDelete({type: 'open', value: steed}, null, currentItem, toggleDeleteAlerte)
       return;
-    }else if(role === 'toggleState'){
-      if(state.ids.indexOf(steed.id) !== -1) return;
-
-      setState(state => ({
-        ...state, 
-        ids: [...state.ids, steed.id],
-      }));
-
-      handleService(changeState, {state: steed.Etat, id: steed.id}, 
-        (response) => {
-          toast.success(response.msg)
-          onFetchData()
-          setState(state => ({
-            ...state,
-            ids: state.ids.filter(id => id !== steed.id)
-          }))
-        },
-        () => {
-          setState(state => ({
-            ...state,
-            ids: state.ids.filter(id => id !== steed.id)
-          }))
-        }
-      )
-
-      return;
     }
-
-    history.push({
-      pathname: `${url}/${steed.id}/${role}`,
-      state: {steed}
-    })
   }
 
   function deleteItem(action){
@@ -123,7 +90,7 @@ function OrderList() {
           isOpen={state.isDeleteAlerteOpen}
           msg="Vous ne pourez plus recuperer cette commande"
           data={currentItem.current}
-          service={deleteSteed}
+          service={deleteOrder}
           deleteData={deleteItem}
           toggleAlerte={toggleDeleteAlerte}
         />
@@ -193,7 +160,7 @@ function OrderList() {
       accessor: () => "delete",
       Cell: (row) => (
         <div>
-          {row.original.etat == 0 ? (
+          {row.original.etat == 0 && (
             <Fragment>
               <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
                 <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
@@ -203,7 +170,19 @@ function OrderList() {
                 <i className="fa fa-user" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
               </span>
           </Fragment>
-          ): '---'}
+          )}
+
+          <span 
+            onClick={() => {
+              history.push({
+                pathname: `${url}/${row.original.id}/detail`,
+                state: {order: row.original}
+              })
+            }}
+            style={{cursor: 'pointer'}}
+          >
+            <i className="fa fa-eye" style={{ width: 35, fontSize: 20, padding: 11, color:'rgb(40, 167, 69)' }}></i>
+          </span>
         </div>
       ),
       style: {

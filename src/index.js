@@ -45,7 +45,7 @@ function Root() {
                         <PublicRoute exact path={`/nouveau-mot-de-passe/:token`} component={PasswordReset} />
 
                         {/* private */}
-                        <PrivateRoute exact path={`/`} component={Dashboard} />
+                        {/* <PrivateRoute exact path={`/`} component={Dashboard} /> */}
                         <PrivateRoute path={`/admins`} component={Admin} />
                         
                         <PrivateRoute path={`/couturiers`} component={Dressmaker} />
@@ -56,7 +56,7 @@ function Root() {
 
                         <PrivateRoute path={`/commandes`} component={Order} />
 
-                        <Redirect to={`/`} />
+                        <Redirect to={`/commandes`} />
                     </Switch>
                 </ScrollContext>
             </Router>

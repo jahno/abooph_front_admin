@@ -85,3 +85,23 @@ export function affectOrderToSteed(orderId,steedId,sCallBack,eCallBack){
     const url = `${API_ROUTE}/admin/commande/affectation/${orderId}/${steedId}`
     exeRequest(url,"PUT",null,sCallBack,eCallBack)
 }
+
+export function getOrderDetail(orderId,sCallBack,eCallBack){
+    const url = `${API_ROUTE}/admin/commande/${orderId}`
+    exeRequest(url,"GET",null,sCallBack,eCallBack)
+}
+
+export function deleteOrder(id){
+    const url = `${API_ROUTE}/admin/commande/${id}`;
+    const token = store.getState().auth.token
+    return (
+      fetch(url,{
+          method:"DELETE",
+          headers:{
+            "Accept": "application/json",
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`
+          }
+      })
+    );
+  }

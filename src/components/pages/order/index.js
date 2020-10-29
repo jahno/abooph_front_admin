@@ -4,7 +4,7 @@ import Layout from '../../layout/app';
 
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 
-import { OrderList, AddSteed, UpdateSteed } from './components';
+import { OrderList, OrderDetail } from './components';
 
 export default function Steed() {
   const { path } = useRouteMatch();
@@ -15,12 +15,8 @@ export default function Steed() {
           <OrderList/>
         </Route>
 
-        <Route path={`${path}/ajouter`}>
-          <AddSteed />
-        </Route>
-
-        <Route path={`${path}/:id/modifier`}>
-          <UpdateSteed />
+        <Route path={`${path}/:id/detail`}>
+          <OrderDetail />
         </Route>
 
         <Redirect to={path}/>
