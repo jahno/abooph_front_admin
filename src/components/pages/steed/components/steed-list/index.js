@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useRef } from 'react';
+
+import { Tooltip } from 'antd';
 import {toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
 import { ToggleLeft, ToggleRight } from 'react-feather'
@@ -195,17 +197,21 @@ function SteedList() {
         return(
         <div>
           {row.original.Etat === 1 ? (
-            <ToggleRight 
-              size={30}
-              style={getStyles(state.ids, row.original)}
-              onClick={() => handleClick('toggleState', row.original)}
-            />
+            <Tooltip title='Désactiver' color='red'>
+              <ToggleRight 
+                size={30}
+                style={getStyles(state.ids, row.original)}
+                onClick={() => handleClick('toggleState', row.original)}
+              />
+            </Tooltip>
           ):(
-            <ToggleLeft
-              size={30}
-              style={getStyles(state.ids, row.original)}
-              onClick={() => handleClick('toggleState', row.original, row.index)}
-            />
+            <Tooltip title='Activer' color='green'>
+              <ToggleLeft
+                size={30}
+                style={getStyles(state.ids, row.original)}
+                onClick={() => handleClick('toggleState', row.original, row.index)}
+              />
+            </Tooltip>
           )}
         </div>)
       },
@@ -220,13 +226,17 @@ function SteedList() {
       accessor: () => "delete",
       Cell: (row) => (
         <div>
-          <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
-            <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
-          </span>
+          <Tooltip title='Supprimer' color='red'>
+            <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
+              <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
+            </span>
+          </Tooltip>
 
-          <span onClick={() => handleClick('modifier', row.original)} style={{cursor: 'pointer'}}>
-            <i className="fa fa-pencil" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
-          </span>
+          <Tooltip title='Modifier' color='green'>
+            <span onClick={() => handleClick('modifier', row.original)} style={{cursor: 'pointer'}}>
+              <i className="fa fa-pencil" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
+            </span>
+          </Tooltip>
         </div>
       ),
       style: {

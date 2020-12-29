@@ -29,7 +29,10 @@ export default function AuthLayout ({children}) {
                                         <div>
                                             <div>
                                                 <h3>Abooph admin</h3>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                                                <p>
+                                                Abooph est une plateforme de confection de vêtements sur mesure qui met en avant les productions africaines.
+                                                <i> La couture sur mesure en un clic</i>
+                                                </p>
                                             </div>
                                         </div>
                                     </Slider >

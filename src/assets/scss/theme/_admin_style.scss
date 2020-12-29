@@ -876,7 +876,7 @@ a {
   }
   .product-title {
     color: #222222;
-    text-transform: capitalize;
+    text-transform: none;
     font-weight: 700;
     margin-bottom: 0;
     a{
@@ -1555,7 +1555,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  text-transform: capitalize;
+  text-transform: none;
   font-weight: 400;
   letter-spacing: 0.03em;
   line-height: 1; }
@@ -1770,7 +1770,7 @@ $header-size: 80px;
             font-size: 12px;
             margin-top: 7px;
             letter-spacing: 1px;
-            text-transform: capitalize;
+            text-transform: none;
             color: $theme-body-sub-title-color;
           }
         }
@@ -2321,7 +2321,7 @@ ul.notification-dropdown.onhover-show-div {
           }
           .badge {
             margin-left: 50px;
-            text-transform: capitalize;
+            text-transform: none;
           }
           &:hover > a {
             @extend %common;
@@ -2746,7 +2746,7 @@ $text-color: $primary-color, $secondary-color, $success-color, $danger-color, $i
   font-size: 12px;
   line-height: 1;
   margin-bottom: 0;
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 /*======= Label-color css ends  ======= */

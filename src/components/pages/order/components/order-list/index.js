@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useRef } from 'react';
 
 import {toast } from 'react-toastify';
+import { Tooltip } from 'antd';
+
 import Breadcrumb from 'components/common/breadcrumb';
 import Datatable from 'components/common/datatable'
 import {DeleteAlerte, handleDelete} from 'components/common/custum-alerte-delete';
@@ -162,27 +164,33 @@ function OrderList() {
         <div>
           {row.original.etat == 0 && (
             <Fragment>
-              <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
-                <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
-              </span>
+              <Tooltip title='Supprimer la commande' color='red'>
+                <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
+                  <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
+                </span>
+              </Tooltip>
 
-              <span onClick={() => handleAffetOrderToSteed(row.original)} style={{cursor: 'pointer'}}>
-                <i className="fa fa-user" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
-              </span>
+              <Tooltip title='Affecter un courtier' color='green'>
+                <span onClick={() => handleAffetOrderToSteed(row.original)} style={{cursor: 'pointer'}}>
+                  <i className="fa fa-user" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
+                </span>
+              </Tooltip>
           </Fragment>
           )}
 
-          <span 
-            onClick={() => {
-              history.push({
-                pathname: `${url}/${row.original.id}/detail`,
-                state: {order: row.original}
-              })
-            }}
-            style={{cursor: 'pointer'}}
-          >
-            <i className="fa fa-eye" style={{ width: 35, fontSize: 20, padding: 11, color:'rgb(40, 167, 69)' }}></i>
-          </span>
+          <Tooltip title='Détail de la commande' color='green'>
+            <span 
+              onClick={() => {
+                history.push({
+                  pathname: `${url}/${row.original.id}/detail`,
+                  state: {order: row.original}
+                })
+              }}
+              style={{cursor: 'pointer'}}
+            >
+              <i className="fa fa-eye" style={{ width: 35, fontSize: 20, padding: 11, color:'rgb(40, 167, 69)' }}></i>
+            </span>
+          </Tooltip>
         </div>
       ),
       style: {

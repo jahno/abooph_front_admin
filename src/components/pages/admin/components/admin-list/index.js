@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useRef } from 'react';
+
+import { Tooltip } from 'antd';
 import {toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../../../common/breadcrumb';
@@ -145,13 +147,17 @@ function List() {
       accessor: () => "delete",
       Cell: (row) => (
         <div>
-          <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
-            <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
-          </span>
+          <Tooltip title='Supprimer' color='red'>
+            <span onClick={() => handleClick('delete', row.original)} style={{cursor: 'pointer'}}>
+              <i className="fa fa-trash" style={{ width: 35, fontSize: 20, padding: 11, color: '#e4566e' }}></i>
+            </span>
+          </Tooltip>
 
-          <span onClick={() => handleClick('modifier', row.original)} style={{cursor: 'pointer'}}>
-            <i className="fa fa-pencil" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
-          </span>
+          <Tooltip title='Modifier' color='green'>
+            <span onClick={() => handleClick('modifier', row.original)} style={{cursor: 'pointer'}}>
+              <i className="fa fa-pencil" style={{ width: 35, fontSize: 20, padding: 11,color:'rgb(40, 167, 69)' }}></i>
+            </span>
+          </Tooltip>
         </div>
       ),
       style: {

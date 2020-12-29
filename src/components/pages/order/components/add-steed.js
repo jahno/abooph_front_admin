@@ -90,13 +90,13 @@ function SteedList(props) {
     //     textAlign: 'center'
     //   }
     // },
-    {
-      Header: 'Email',
-      accessor: 'email',
-      style: {
-        textAlign: 'center'
-      }
-    }, 
+    // {
+    //   Header: 'Email',
+    //   accessor: 'email',
+    //   style: {
+    //     textAlign: 'center'
+    //   }
+    // }, 
     {
       Header: 'Téléphone',
       accessor: 'numero',
@@ -133,7 +133,7 @@ function SteedList(props) {
       accessor: () => "action",
       Cell: (row) => (
         <span onClick={() => affectOrder(row.original)} style={{cursor: 'pointer', color: 'rgb(102, 209, 212)', fontWeight: 'bold'}}>
-          affecter la commande
+          affecter
         </span>
       ),
       style: {
